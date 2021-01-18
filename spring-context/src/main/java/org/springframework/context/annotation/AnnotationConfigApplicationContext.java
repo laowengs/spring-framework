@@ -84,10 +84,12 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * {@link Configuration @Configuration} classes
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
+		//创建AnnotatedBeanDefinitionReader ,ClassPathBeanDefinitionScanner
 		this();
-		//只注册了传入的配置类为spring bean
+		//只注册了传入的配置类到 beanDefinitionMap
+		// TODO 配置类中的@bean 会不会也注册到 beanDefinitionMap
 		register(componentClasses);
-		//spring 启动核心步骤
+		//spring 启动核心步骤 = bean的生命周期初始化流程
 		refresh();
 	}
 
